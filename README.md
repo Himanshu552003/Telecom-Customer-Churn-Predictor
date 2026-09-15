@@ -133,8 +133,9 @@ Churn Prediction/
 │   ├── model_comparison.csv       # baseline model comparison
 │   └── feature_importance.csv     # top feature importances
 ├── templates/
-│   └── index.html                 # browser test form
-├── app.py                         # Flask app (/predict endpoint)
+│   ├── index.html                 # browser test form
+│   └── insights.html              # live EDA/metrics dashboard
+├── app.py                         # Flask app (/predict, /insights)
 ├── requirements.txt
 └── README.md
 ```
@@ -164,7 +165,9 @@ python app.py
 ```
 
 Visit **http://127.0.0.1:5000/** in your browser for a form-based test UI,
-or call the API directly:
+and **http://127.0.0.1:5000/insights** for a live dashboard of the EDA
+plots, model comparison table, and final metrics (the same charts embedded
+below, served directly from `reports/figures/`) — or call the API directly:
 
 ```bash
 curl -X POST http://127.0.0.1:5000/predict \

@@ -14,21 +14,37 @@ Production (e.g. Render/Railway):
     gunicorn app:app
 """
 
+import json
 import os
 import sys
 from pathlib import Path
 
 import joblib
 import pandas as pd
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 
 sys.path.append(str(Path(__file__).parent / "src"))
 from preprocessing import engineer_features  # noqa: E402
 
 MODEL_PATH = "models/churn_model.joblib"
+FIGURES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports", "figures")
+METRICS_PATH = "reports/metrics.json"
 
 app = Flask(__name__)
 model = joblib.load(MODEL_PATH)
+
+with open(METRICS_PATH) as f:
+    METRICS = json.load(f)
+
+INSIGHT_PLOTS = [
+    ("churn_distribution.png", "Churn Class Distribution"),
+    ("churn_by_contract.png", "Churn Rate by Contract Type"),
+    ("tenure_by_churn.png", "Tenure Distribution by Churn"),
+    ("monthly_charges_by_churn.png", "Monthly Charges by Churn"),
+    ("roc_curve.png", "ROC Curve — Final Model"),
+    ("confusion_matrix.png", "Confusion Matrix — Final Model"),
+    ("feature_importance.png", "Top 15 Feature Importances"),
+]
 
 REQUIRED_FIELDS = [
     "gender",
@@ -91,6 +107,20 @@ def predict_from_payload(payload: dict):
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html", example=EXAMPLE_PAYLOAD)
+
+
+@app.route("/insights", methods=["GET"])
+def insights():
+    return render_template(
+        "insights.html",
+        metrics=METRICS,
+        plots=INSIGHT_PLOTS,
+    )
+
+
+@app.route("/figures/<path:filename>")
+def figures(filename):
+    return send_from_directory(FIGURES_DIR, filename)
 
 
 @app.route("/predict", methods=["POST"])
