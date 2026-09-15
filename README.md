@@ -208,7 +208,13 @@ locally with `FLASK_DEBUG=1` if needed).
 2. On Render: **New → Web Service** → connect the repo.
 3. Build command: `pip install -r requirements.txt`
 4. Start command: `gunicorn app:app` (also defined in the included `Procfile`)
-5. Deploy — Render assigns a public URL such as `https://your-app.onrender.com`.
+5. **Set the Python version** to `3.11.9` — this repo pins it via a
+   `.python-version` file, but Render's most reliable method is also setting
+   a `PYTHON_VERSION=3.11.9` environment variable in the service's
+   **Environment** tab. This matters: without it, Render may default to the
+   newest Python, which has no prebuilt wheels for the pinned `pandas`/`numpy`
+   versions and fails the build trying to compile them from source.
+6. Deploy — Render assigns a public URL such as `https://your-app.onrender.com`.
 
 The same `Procfile` + `requirements.txt` also work unmodified on Railway,
 Heroku, or any other buildpack-based host.
