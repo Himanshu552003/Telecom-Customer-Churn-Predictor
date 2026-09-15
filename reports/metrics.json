@@ -1,0 +1,46 @@
+{
+  "selected_model": "Logistic Regression (Tuned)",
+  "test_metrics": {
+    "model": "Logistic Regression (Tuned)",
+    "accuracy": 0.7132718239886444,
+    "precision": 0.47593582887700536,
+    "recall": 0.7082228116710876,
+    "f1": 0.5692963752665247,
+    "roc_auc": 0.780241811115909
+  },
+  "best_params": {
+    "clf__solver": "lbfgs",
+    "clf__penalty": "l2",
+    "clf__C": 0.01
+  },
+  "cv_roc_auc": 0.7892159129203039,
+  "baseline_comparison": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.709013484740951,
+      "precision": 0.47058823529411764,
+      "recall": 0.7002652519893899,
+      "f1": 0.5628997867803839,
+      "roc_auc": 0.7785557131988567,
+      "train_time_sec": 0.27
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.7579843860894251,
+      "precision": 0.5552147239263804,
+      "recall": 0.48010610079575594,
+      "f1": 0.5149359886201992,
+      "roc_auc": 0.7592594020521046,
+      "train_time_sec": 1.08
+    },
+    {
+      "model": "XGBoost",
+      "accuracy": 0.7359829666430092,
+      "precision": 0.5084745762711864,
+      "recall": 0.3978779840848806,
+      "f1": 0.44642857142857145,
+      "roc_auc": 0.7274587214442868,
+      "train_time_sec": 1.49
+    }
+  ]
+}

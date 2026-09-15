@@ -1,0 +1,16 @@
+feature,importance
+cat__Contract_Two year,0.9078896977394458
+cat__Contract_Month-to-month,0.8760438583071135
+num__tenure,0.49612760912731263
+num__MonthlyCharges,0.2687690678449035
+cat__PaymentMethod_Electronic check,0.2222650159944754
+num__AvgMonthlySpend,0.2173165210660336
+cat__TechSupport_No,0.18114462414722682
+cat__InternetService_Fiber optic,0.16406412409448262
+cat__PaperlessBilling_Yes,0.15488242574125619
+cat__OnlineSecurity_No,0.1496304441495104
+cat__TenureBucket_4yr+,0.1366870550593995
+num__TotalCharges,0.11880131872004
+num__SeniorCitizen,0.11025019018735362
+cat__TechSupport_Yes,0.106522447449578
+cat__TenureBucket_0-1yr,0.10557147023101662
